@@ -1,5 +1,5 @@
 <template>
-  <v-card height="unset" width="100%" class="mx-auto aside"> </v-card>
+  <v-card height="unset" width="320px" class="mx-auto aside"> </v-card>
 </template>
 <script>
 export default {

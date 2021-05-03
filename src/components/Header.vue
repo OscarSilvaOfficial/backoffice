@@ -17,13 +17,10 @@
   display: flex;
   align-items: center;
   border-radius: 0;
+  width: 100%;
 
   #icon-bell {
     margin-left: auto;
-  }
-
-  header {
-    width: 100%;
   }
 
   i {

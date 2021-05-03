@@ -1,29 +1,47 @@
 <template>
-  <v-card height="unset" width="100%" class="mx-auto aside">
-    <v-btn class="btn-close" @click="changeMenuState()" icon>
-      <v-icon>mdi-window-close</v-icon>
+  <v-card height="unset" width="320px" class="mx-auto aside" id="side-menu">
+    <picture>
+      <img :src="logo" alt="Quiteja" class="logo-quiteja" />
+    </picture>
+    <Select :selectItems="creditors" />
+    <v-btn class="btn-close" v-show="isOpen" @click="changeMenuState()" icon>
+      <v-icon>mdi-arrow-left</v-icon>
     </v-btn>
-    <img :src="logo" alt="Quiteja" class="logo-quiteja" />
+    <v-btn class="btn-close" v-show="!isOpen" @click="changeMenuState()" icon>
+      <v-icon>mdi-arrow-right</v-icon>
+    </v-btn>
   </v-card>
 </template>
 
 <script>
 import $ from "jquery";
+import Select from "@/components/Select";
 
 export default {
+  components: {
+    Select,
+  },
+
   data() {
     return {
       logo: "./img/quiteja-oficial.png",
       isOpen: true,
+      creditors: ["Bradesco", "MercadoLivre", "Banco Pan"],
     };
   },
 
   methods: {
     changeMenuState() {
       if (this.isOpen) {
-        $(".aside").addClass("active");
+        this.isOpen = false;
+        $("#side-menu").css("width", "70px");
+        $("#side-menu picture").css("clip-path", "circle(30% at 42% 50%)");
+        $(".logo-quiteja").css("left", "49px").css("width", "150px");
       } else {
-        $(".aside").removeClass("active");
+        this.isOpen = true;
+        $("#side-menu").css("width", "320px");
+        $("#side-menu picture").css("clip-path", "unset");
+        $(".logo-quiteja").css("left", "unset").css("width", "unset");
       }
     },
   },
@@ -35,26 +53,22 @@ export default {
   border-radius: 0;
 }
 
-.active {
-  width: 20%;
-}
-
 .aside {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 16px 22px;
+  padding: 16px 0px;
   flex-direction: column;
-  position: relative;
-  transition: width 5s;
+  transition: all 0.7s;
 
-  .btn-close {
-    margin-left: auto;
-  }
+  picture {
+    transition: clip-path 0.7s;
 
-  .logo-quiteja {
-    padding: 16px 0;
-    width: 100%;
+    .logo-quiteja {
+      padding: 16px 22px;
+      position: relative;
+      transition: clip-path 0.7s;
+    }
   }
 }
 </style>

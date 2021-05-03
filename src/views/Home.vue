@@ -23,7 +23,6 @@ export default {
 
 <style lang="scss">
 .main {
-  display: grid;
-  grid-template-columns: 17.5% auto 17.5%;
+  display: flex;
 }
 </style>
